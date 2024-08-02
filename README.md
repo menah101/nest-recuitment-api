@@ -19,3 +19,9 @@ Tiktok “Hỏi Dân IT” :  https://www.tiktok.com/@hoidanit
 Fanpage “Hỏi Dân IT” : https://www.facebook.com/askITwithERIC/
 
 Udemy Hỏi Dân IT: https://www.udemy.com/user/eric-7039/
+
+
+7VNOqZ10bq4FN3Hc
+quy0694
+
+mongodb+srv://quy0694:7VNOqZ10bq4FN3Hc@recuitment.xbjnnmq.mongodb.net/
