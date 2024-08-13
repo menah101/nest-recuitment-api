@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto, RegisterUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import mongoose, { Model } from 'mongoose';
+import mongoose from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { compareSync, genSaltSync, hashSync } from 'bcryptjs';
@@ -156,4 +156,13 @@ export class UsersService {
 
     return newUserRegister;
   }
+
+  updateUserToken = async (refreshToken: string, _id: string) => {
+    return await this.userModel.updateOne(
+      { _id },
+      {
+        refreshToken,
+      },
+    );
+  };
 }
