@@ -22,7 +22,7 @@ export class UsersService {
     return hash;
   };
 
-  async create(createUserDto: CreateUserDto, user: IUser) {
+  create = async (createUserDto: CreateUserDto, user: IUser) => {
     const { name, email, password, age, gender, address, role, company } =
       createUserDto;
 
@@ -50,9 +50,9 @@ export class UsersService {
       },
     });
     return newUser;
-  }
+  };
 
-  async findAll(currentPage: number, limit: number, qs: string) {
+  findAll = async (currentPage: number, limit: number, qs: string) => {
     const { filter, sort, population } = aqp(qs);
     delete filter.page;
     delete filter.limit;
@@ -80,8 +80,9 @@ export class UsersService {
       },
       result,
     };
-  }
-  findOne(id: string) {
+  };
+
+  findOne = (id: string) => {
     if (!mongoose.Types.ObjectId.isValid(id)) return 'not found user';
 
     return this.userModel
@@ -89,19 +90,19 @@ export class UsersService {
         _id: id,
       })
       .select('-password');
-  }
+  };
 
-  findOneByUsername(username: string) {
+  findOneByUsername = (username: string) => {
     return this.userModel.findOne({
       email: username,
     });
-  }
+  };
 
-  isValidPassword(password: string, hash: string) {
+  isValidPassword = (password: string, hash: string) => {
     return compareSync(password, hash);
-  }
+  };
 
-  async update(updateUserDto: UpdateUserDto, user: IUser) {
+  update = async (updateUserDto: UpdateUserDto, user: IUser) => {
     const updated = await this.userModel.updateOne(
       { _id: updateUserDto._id },
       {
@@ -113,9 +114,9 @@ export class UsersService {
       },
     );
     return updated;
-  }
+  };
 
-  async remove(id: string, user: IUser) {
+  remove = async (id: string, user: IUser) => {
     if (!mongoose.Types.ObjectId.isValid(id)) return 'not found user';
 
     await this.userModel.updateOne(
@@ -131,9 +132,9 @@ export class UsersService {
     return this.userModel.softDelete({
       _id: id,
     });
-  }
+  };
 
-  async register(user: RegisterUserDto) {
+  register = async (user: RegisterUserDto) => {
     const { name, email, password, age, gender, address } = user;
     const isExist = await this.userModel.findOne({ email });
 
@@ -155,7 +156,7 @@ export class UsersService {
     });
 
     return newUserRegister;
-  }
+  };
 
   updateUserToken = async (refreshToken: string, _id: string) => {
     return await this.userModel.updateOne(
@@ -164,5 +165,9 @@ export class UsersService {
         refreshToken,
       },
     );
+  };
+
+  findUserByToken = async (refreshToken: string) => {
+    return await this.userModel.findOne({ refreshToken });
   };
 }
