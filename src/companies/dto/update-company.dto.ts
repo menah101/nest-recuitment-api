@@ -15,4 +15,9 @@ export class UpdateCompanyDto {
     message: 'Description is not empty',
   })
   description: string;
+
+  @IsNotEmpty({
+    message: 'Logo is not empty',
+  })
+  logo: string;
 }
