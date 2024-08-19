@@ -1,4 +1,4 @@
-import { IsBoolean, IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsArray, IsBoolean, IsMongoId, IsNotEmpty } from 'class-validator';
 import mongoose from 'mongoose';
 
 export class CreateRoleDto {
@@ -14,6 +14,6 @@ export class CreateRoleDto {
 
   @IsNotEmpty({ message: 'isActive is not empty' })
   @IsMongoId({ each: true, message: 'each permission is mongo object id' })
-  @IsBoolean({ message: 'permissions is array' })
+  @IsArray({ message: 'permissions is array' })
   permissions: mongoose.Schema.Types.ObjectId[];
 }

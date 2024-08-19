@@ -108,10 +108,6 @@ export class PermissionsService {
   }
 
   async remove(_id: string, user: IUser) {
-    if (!mongoose.Types.ObjectId.isValid(_id)) {
-      throw new BadRequestException('not found permission');
-    }
-
     await this.permissionModel.updateOne(
       { _id },
       {
