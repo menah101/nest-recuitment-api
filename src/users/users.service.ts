@@ -83,7 +83,9 @@ export class UsersService {
   };
 
   findOne = (id: string) => {
-    if (!mongoose.Types.ObjectId.isValid(id)) return 'not found user';
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('not found user');
+    }
 
     return this.userModel
       .findOne({
