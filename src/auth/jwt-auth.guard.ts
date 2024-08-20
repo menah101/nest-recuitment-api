@@ -1,10 +1,12 @@
 import {
   ExecutionContext,
+  ForbiddenException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
+import { request } from 'express';
 import { IS_PUBLIC_KEY } from 'src/decorator/customize';
 
 @Injectable()
@@ -29,6 +31,23 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     if (err || !user) {
       throw err || new UnauthorizedException('Token not valid!');
     }
+
+    const targetMethod = request.method;
+    const targetEndpoint = request.route?.path;
+
+    const permissions = user?.permissions ?? [];
+    const isExist = permissions.find(
+      (permission) =>
+        targetMethod === permission.method &&
+        targetEndpoint === permission.path,
+    );
+
+    if (!isExist) {
+      throw new ForbiddenException(
+        'You do not have permission to access the endpoint',
+      );
+    }
+
     return user;
   }
 }
