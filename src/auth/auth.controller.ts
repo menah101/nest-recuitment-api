@@ -57,7 +57,7 @@ export class AuthController {
   }
 
   @ResponseMessage('User logout successful')
-  @Get('/logout')
+  @Post('/logout')
   handleLogout(
     @User() user: IUser,
     @Res({ passthrough: true }) response: Response,
