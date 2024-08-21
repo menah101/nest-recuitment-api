@@ -13,6 +13,7 @@ export class Job {
 
   @Prop({ type: Object })
   company: {
+    name: string;
     _id: mongoose.Schema.Types.ObjectId;
     email: string;
     logo: string;
