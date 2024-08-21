@@ -11,7 +11,7 @@ import {
 import { PermissionsService } from './permissions.service';
 import { CreatePermissionDto } from './dto/create-permission.dto';
 import { UpdatePermissionDto } from './dto/update-permission.dto';
-import { ResponseMessage, User } from 'src/decorator/customize';
+import { Public, ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/user.interface';
 
 @Controller('permissions')
@@ -28,6 +28,7 @@ export class PermissionsController {
   }
 
   @Get()
+  @Public()
   @ResponseMessage('Fetch permission with paginate')
   findAll(
     @Query('current') currentPage: string,

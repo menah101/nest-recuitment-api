@@ -11,7 +11,7 @@ import {
 import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
-import { ResponseMessage, User } from 'src/decorator/customize';
+import { Public, ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/user.interface';
 
 @Controller('roles')
@@ -25,6 +25,7 @@ export class RolesController {
   }
 
   @Get()
+  @Public()
   @ResponseMessage('Fetch role with paginate')
   findAll(
     @Query('current') currentPage: string,
