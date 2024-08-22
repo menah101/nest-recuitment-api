@@ -32,6 +32,7 @@
     "@nestjs/platform-express": "9.4.0",
     "@nestjs/schedule": "^3.0.1",
     "@nestjs/swagger": "7.0.4",
+    "@nestjs/terminus": "10.0.1",
     "@nestjs/throttler": "^4.1.0",
     "@types/bcryptjs": "2.4.2",
     "@types/passport-local": "1.0.38",
@@ -54,6 +55,7 @@
     "soft-delete-plugin-mongoose": "^1.0.17"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.25",
     "@nestjs/cli": "9.4.2",
     "@nestjs/schematics": "9.1.0",
     "@nestjs/testing": "9.0.0",
