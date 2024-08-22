@@ -5,9 +5,11 @@ import {
   IsNotEmpty,
   IsNotEmptyObject,
   IsObject,
+  IsString,
   ValidateNested,
 } from 'class-validator';
 import mongoose from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 class Company {
   @IsNotEmpty()
@@ -103,4 +105,19 @@ export class RegisterUserDto {
     message: 'Address is not empty',
   })
   address: string;
+}
+
+export class UserLoginDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({ example: 'hoidanit@gmail.com', description: 'username' })
+  readonly username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: '123456',
+    description: 'password',
+  })
+  readonly password: string;
 }
